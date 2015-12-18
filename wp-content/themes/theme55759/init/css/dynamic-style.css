@@ -1,0 +1,215 @@
+.site-link:hover {
+	color: $typography-header-logo[color];
+}
+
+.header-top {
+	border-bottom-color: $color-link;
+}
+
+.menu-primary .menu-items > .menu-item.current-menu-item > a,
+.menu-primary .menu-items > .menu-item.current_page_item > a,
+.menu-primary .menu-items > .menu-item.current-menu-item:hover > a,
+.menu-primary .menu-items > .menu-item.current_page_item:hover > a {
+	background-color: $color-link;
+	color: $color-secondary;
+}
+
+.cherry-btn-primary,
+.cherry-btn-link:before,
+.pagination .page-numbers.current,
+.pagination .page-numbers:hover,
+.search-form button[type="submit"],
+.cherry-spinner-double-bounce .cherry-double-bounce1, 
+.cherry-spinner-double-bounce .cherry-double-bounce2,
+.menu-primary .cherry-mega-menu-mobile-trigger,
+.menu-primary .menu-items > .menu-item ul li.current-menu-item > a,
+.menu-primary .menu-items > .menu-item ul li.current_page_item > a,
+.menu-primary .menu-items > .menu-item > ul > li > a:hover:after,
+.menu-primary .menu-items > .menu-item > ul > li:hover > a:after,
+.comment-reply-link,
+input[type="submit"],
+input[type="reset"],
+.entry-permalink a,
+.post-gallery_prev,
+.post-gallery_next,
+.portfolio-pagination ul.page-link li.active a,
+.portfolio-pagination ul.page-link li a:hover,
+.portfolio-ajax-button .load-more-button a,
+.swiper-pagination-bullet-active,
+.swiper-pagination-bullet:hover {
+	background-color: $color-link;
+}
+
+.cherry-btn-link,
+.entry-title a:hover,
+.list_1 ul li a:hover,
+.posts_3 .post-title a:hover,
+.posts_1 .post-title a:hover,
+.cherry-services_title a:hover,
+.cherry-breadcrumbs_item a:hover,
+.static-search-form .search-form-wrapper > i:hover,
+.menu-primary .menu-items .menu-item ul li li a:hover,
+.cherry-services.services_2 .cherry-services_title a:hover,
+.cherry-sidebar-main .widget ul li a:hover, 
+.cherry-sidebar-secondary .widget ul li a:hover,
+ol.comment-list li.comment footer.comment-meta a:hover,
+.team-listing_name a:hover,
+.portfolio-wrap .portfolio-container .portfolio-pagination .page-nav a,
+div.portfolio-wrap div.portfolio-item .inner-wrap h3 a:hover,
+div.portfolio-wrap div.portfolio-item .inner-wrap .links-container .item-link:hover,
+div.portfolio-wrap .portfolio-container.justified-layout div.portfolio-item .inner-wrap h3 a:hover,
+.swiper-button-prev, 
+.swiper-container-rtl .swiper-button-next, 
+.swiper-button-next, 
+.swiper-container-rtl .swiper-button-prev,
+body.single-portfolio article.type-portfolio .cherry-portfolio-single-post a,
+ul.order-filter > li:hover,
+.static-social-follow .cherry-follow_link:hover,
+#menu-primary > #menu-primary-items .cherry-mega-menu-sub.mega-sub .megamenu-post-wrap .post-title a:hover,
+#menu-primary > #menu-primary-items .cherry-mega-menu-sub.mega-sub .megamenu-news-wrap .post-title a:hover,
+.cherry-mega-menu .cherry-btn-primary.cherry-btn-fade:hover,
+.posts_2 h3 a:hover {
+	color: $color-link;
+}
+
+.author-bio h3 a:hover,
+.cherry-btn-link:hover,
+.swiper-button-prev:hover, 
+.swiper-container-rtl .swiper-button-next:hover, 
+.swiper-button-next:hover, 
+.swiper-container-rtl .swiper-button-prev:hover,
+.motoslider_wrapper .ms_button_layer:hover,
+.portfolio-wrap .portfolio-container .portfolio-pagination .page-nav a:hover,
+body.single-portfolio article.type-portfolio .cherry-portfolio-single-post a:hover,
+ul.order-filter > li ul li {
+	color: $color-link-hover;
+}
+
+.menu-primary .menu-items > .menu-item.current-menu-item > a:hover,
+.menu-primary .menu-items > .menu-item.current_page_item > a:hover {
+	color: $color-secondary;	
+}
+
+div.portfolio-wrap,
+.pagination .page-numbers,
+.search-form button[type="submit"]:hover,
+.menu-primary .menu-items > .menu-item > a:hover,
+.menu-primary .menu-items > .menu-item:hover > a,
+body.single-portfolio article.type-portfolio .cherry-portfolio-single-post .post-meta-container .post-date,
+body.single-portfolio article.type-portfolio .cherry-portfolio-single-post,
+body.single-portfolio article.type-portfolio .cherry-portfolio-single-post .post-taxonomy-list span {
+	color: $typography-body[color];
+}
+
+.search-form button[type="submit"]:hover,
+.menu-primary .menu-items > .menu-item ul,
+.cherry-btn-primary.cherry-btn-fade:hover,
+.cherry-btn-link.cherry-btn-fade:hover:before,
+.menu-primary .cherry-mega-menu-mobile-trigger:hover,
+.menu-primary .menu-items > .menu-item > a:hover:after,
+.menu-primary .menu-items > .menu-item:hover > a:after,
+.comment-reply-link:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.entry-permalink a:hover,
+.post-gallery_prev:hover,
+.post-gallery_next:hover,
+.portfolio-ajax-button .load-more-button a:hover {
+	background-color: $color-link-hover;	
+}
+
+.site-footer .widget-title {
+	font-family: $typography-h4[family];
+	font-size: $typography-h4[size]px;
+}
+
+.site-info a:hover {
+	color: $typography-footer[color];
+}
+
+.footer-logo-link:hover {
+	color: $typography-footer-logo[color];
+}
+
+.entry-title a,
+.list_1 ul li a,
+.team-listing_name a,
+.posts_1 .post-title a,
+.cherry-services_title a,
+.cherry-sidebar-main .widget ul li a, 
+.cherry-sidebar-secondary .widget ul li a {
+	color: $color-gray-variations;
+}
+
+.posts_2 .rollover-content:after,
+.team .team-listing_photo a:after,
+.cherry-services .cherry-services_thumb a:after,
+.cherry-services.services_2 .cherry-services_icon,
+.cherry-services.services_3 .cherry-services_icon,
+div.portfolio-wrap div.portfolio-item .inner-wrap .rollover-content:before,
+#menu-primary > #menu-primary-items .cherry-mega-menu-sub.mega-sub .megamenu-post-wrap .post-thumbnail a:after,
+#menu-primary > #menu-primary-items .cherry-mega-menu-sub.mega-sub .megamenu-banner-wrap:hover:before {
+	background-color: $color-info;
+}
+
+.box_7 h3,
+.author-bio h3,
+ul.filter li a,
+.posts_1 .post-meta,
+.posts_3 .post-title a,
+ol.comment-list li.comment footer.comment-meta,
+.cherry-services.services_2 .cherry-services_title a,
+.cherry-services.services_3 .cherry-services_title a,
+div.portfolio-wrap div.portfolio-item .inner-wrap h3 a {
+	color: $color-info;
+}
+
+.box_5 {
+	border-top-color: $color-info;
+}
+
+.cherry-breadcrumbs_item a.is-home:before {
+	line-height: $typography-breadcrumbs[lineheight]px;
+}
+
+.error-404-num {
+	font-family: $typography-h1[family];
+	font-weight: $typography-h1[style];
+}
+
+.testimonials-item blockquote,
+.menu-item-type-widget ul li a,
+ol.comment-list li.comment footer.comment-meta {
+	font-size: $typography-body[size]px;
+}
+
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+ul.filter li.active a,
+ul.filter li a:hover {
+	border-color: $color-info;
+}
+
+.comment-reply-title,
+.related-posts_title,
+.comments-title {
+	@typography( $typography-h2 )
+}
+
+.team-listing_name {
+	@typography( $typography-h3 )
+}
+
+.related-posts .entry-title {
+	@typography( $typography-body )	
+}
+
+#menu-primary > #menu-primary-items .cherry-mega-menu-sub.mega-sub > li:before {
+	background: $typography-body[color];
+}
+
+@background( .cherry-breadcrumbs, $breadcrumbs-background )

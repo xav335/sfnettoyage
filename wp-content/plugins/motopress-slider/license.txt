@@ -1,0 +1,29 @@
+[MOTOPRESS LICENSING TERMS]
+MotoPress provides three different licenses: PERSONAL LICENSE, BUSINESS LICENSE and DEVELOPER LICENSE.
+
+[PERSONAL LICENSE]
+The Personal License grants you an ongoing, non-exclusive, permission to make use of the plugin. You are licensed to use the plugin to create one single end product which end user is not charged to access or use. You can use the personal license for your own website or for one client by transferring the license to the client when the project is finished.
+
+Important: Distribution of source files is not permitted. Making the plugin available for free after purchase is prohibited.
+
+
+[BUSINESS LICENSE]
+The Business License grants you an ongoing, non-exclusive, permission to make use of the plugin. You are licensed to use the plugin to create end products which end user is not charged to access or use. You can use the business license for your own websites or for clients by transferring the license to the clients when the projects are finished.
+
+Important: Distribution of source files is not permitted. Making the plugin available for free after purchase is prohibited.
+
+
+[DEVELOPER LICENSE]
+Developer License grants you an ongoing, non-exclusive, permission to make use of the plugin. You are licensed to create an unlimited number of websites and use them on unlimited number of domains. You can create as many as you need websites for yourself or for clients. You can sell the end products to the clients, by providing further plugin support for them.
+
+Important: Distribution of source files is not permitted. Making the plugin available for free after purchase is prohibited.
+
+
+You get access to plugin updates and support for a period of one (1) year. After a year you will be required to renew your license at a substantial discount to receive product updates and support for another year. If you do not update your license, the plugin will continue working, but you won’t get MotoPress support and updates.
+
+
+[WARRANTY]
+
+MotoPress plugin is guaranteed to function on a clean installation of WordPress on a properly configured web server. We do not guarantee it will function with all 3rd party plugins, with all web browsers, with all web hosts or if it has been modified by 3rd party developers. We are not responsible for any plugin compatibility conflicts that may occur. It is our policy to support our plugins as best we can and we will provide support for 3rd party plugin conflicts at our discretion or as time allows.
+
+By purchasing MotoPress product(s) you indicate that you have read and agree to the Terms & Conditions detailed on our official website.
