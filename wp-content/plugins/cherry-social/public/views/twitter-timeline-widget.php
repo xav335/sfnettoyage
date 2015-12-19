@@ -1,0 +1,16 @@
+<?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+} ?>
+
+<a class="twitter-timeline"
+	data-widget-id="<?php echo $widget_ID; ?>"
+	data-theme="<?php echo $skin; ?>"
+	data-link-color="#<?php echo $link_color; ?>"
+	data-border-color="#<?php echo $border_color; ?>"
+	data-tweet-limit="<?php echo $limit; ?>"
+	data-chrome="<?php echo join( ' ', $chrome ); ?>"
+	height="<?php echo $height; ?>">
+</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
