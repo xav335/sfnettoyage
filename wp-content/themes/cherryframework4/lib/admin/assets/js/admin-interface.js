@@ -338,8 +338,10 @@
 				data = {
 					action: 'cherry_partial_export_url',
 					export_array: serializeCherry,
-					_wpnonce: jQuery('#partial-export-nonce').val()
+					_wpnonce: jQuery('#partial-export-nonce').val(),
+					use_statics: jQuery('#cherry-export-use-static-setting-0').val()
 				}
+
 				if( ajaxExportOptionsRequest != null && !ajaxRequestSuccess ){
 					ajaxExportOptionsRequest.abort();
 				}
@@ -367,12 +369,21 @@
 			// Save options
 			function ajaxSaveOptions( event ){
 				var
-					serializeObject = $('#cherry-options').serializeObject()
-				,	data = {
-						action: 'cherry_save_options',
-						post_array: serializeObject.cherry,
-					}
+					serializeObject
+				,	data = {}
 				;
+
+				$('#cherry-options .cherry-multi-select').each(function(){
+					if( $(this).val() == null ){
+						$(this).val('');
+					}
+				})
+
+				serializeObject = $('#cherry-options').serializeObject()
+				data = {
+					action: 'cherry_save_options',
+					post_array: serializeObject.cherry,
+				}
 
 				if( ajaxSaveOptionsRequest != null && !ajaxRequestSuccess ){
 					ajaxSaveOptionsRequest.abort();

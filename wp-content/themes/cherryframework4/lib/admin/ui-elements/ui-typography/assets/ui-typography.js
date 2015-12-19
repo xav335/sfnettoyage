@@ -74,7 +74,7 @@
 				var
 					thisTypography = $( target ).parents( '.cherry-ui-typography-wrap:first' )
 				,	previewContainer = $(".cherry-font-preview", thisTypography )
-				,	fontFamily = $(".cherry-font-family", thisTypography ).val()
+				,	fontFamily = $("select.cherry-font-family", thisTypography ).val()
 				,	fontStyle = $(".cherry-font-style", thisTypography ).val()
 				,	fontCharacter = $(".cherry-font-character", thisTypography ).val()
 				,	fontSize = $(".font-size .cherry-ui-stepper-input", thisTypography ).val()
@@ -86,12 +86,12 @@
 				;
 
 				if( fontType == 'web'){
-					$('.field-font-character', thisTypography).css({ display: "block" });
+					//$('.field-font-character', thisTypography).css({ display: "block" });
 					if(fontInclud){
 						google_font_include( target );
 					}
 				}else{
-					$('.field-font-character', thisTypography).css({ display: "none" });
+					//$('.field-font-character', thisTypography).css({ display: "none" });
 				}
 
 				previewContainer.css({ 'display': 'block' });
@@ -121,7 +121,6 @@
 				,	fontCharacter = $(".cherry-font-character", thisTypography ).val()
 				,	fontData = { 'family':fontFamily, 'style':fontStyle, 'character': fontCharacter }
 				;
-;
 				ajaxGetGoogleFont( fontData, thisTypography );
 			}
 
@@ -149,10 +148,6 @@
 				var
 					parent_wrap = item.parents('.cherry-ui-typography-wrap')
 				,	selected_option = item.find(":selected")
-				//,	style_type = selected_option.data('style').split(',')
-				//,	character_type = selected_option.data('character').split(',')
-				//,	select_character = $('.cherry-font-character option', parent_wrap)
-				//,	select_style = $('.cherry-font-style option', parent_wrap)
 				,	input_category = $('.cherry-font-category', parent_wrap)
 				,	fontType = get_font_type( item )
 				;
@@ -166,19 +161,6 @@
 				}else{
 					$('.field-font-character', thisTypography).css({ display: "none" });
 				}
-				/*
-				//first_select_character = false;
-				//first_select_style = false;
-
-
-				select_style.each(function(){
-					disabled_options($(this), style_type, 'style');
-				});
-				select_character.each(function(){
-					disabled_options($(this), character_type, 'character');
-				});*/
-
-
 			}
 			// get type option
 			function get_font_type(item){
@@ -264,7 +246,7 @@
 
 			function ajaxGetFontVariants( parent_wrap ){
 				var
-					$font_select = $('.cherry-font-family', parent_wrap)
+					$font_select = $('select.cherry-font-family', parent_wrap)
 				,	$variant_select = $('.field-font-style', parent_wrap)
 				,	selected_value = $font_select.val()
 				,	id = parent_wrap.data('id')
@@ -302,7 +284,7 @@
 
 			function ajaxGetFontSubsets( parent_wrap ){
 				var
-					$font_select = $('.cherry-font-family', parent_wrap)
+					$font_select = $('select.cherry-font-family', parent_wrap)
 				,	$character_select = $('.field-font-character', parent_wrap)
 				,	selected_value = $font_select.val()
 				,	id = parent_wrap.data('id')

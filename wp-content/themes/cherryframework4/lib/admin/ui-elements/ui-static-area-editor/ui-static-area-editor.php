@@ -620,7 +620,8 @@ if ( ! class_exists( 'UI_Static_Area_Editor' ) ) {
 						usort( $taxonomies, array( __CLASS__, 'strcasecmp_name' ) );
 
 						foreach ( $taxonomies as $taxonomy ) {
-							$result_array['optgroup-'.$taxonomy->labels->name]['label'] = __( $taxonomy->labels->name . ':', 'cherry' );
+							$result_array['optgroup-'.$taxonomy->labels->name]['label'] = sprintf( __( '%s:', 'cherry' ), $taxonomy->labels->name );
+
 							$result_array['optgroup-'.$taxonomy->labels->name]['group_options'][ esc_attr( $taxonomy->name ) ] = 'All ' . esc_html( $taxonomy->name ) . ' pages';
 							$terms = get_terms( array( $taxonomy->name ), array( 'number' => 250, 'hide_empty' => false ) );
 							foreach ( $terms as $term ) {
@@ -659,16 +660,16 @@ if ( ! class_exists( 'UI_Static_Area_Editor' ) ) {
 		 */
 		public static function enqueue_assets(){
 			wp_enqueue_script(
-				'statics-areas-editor-plugin',
-				self::get_current_file_url() . '/assets/statics-areas-editor-plugin.js',
+				'statics-areas-editor-plugin-min',
+				self::get_current_file_url() . '/assets/min/statics-areas-editor-plugin.min.js',
 				array( 'jquery', 'jquery-ui-accordion', 'jquery-ui-sortable' ),
 				CHERRY_VERSION,
 				true
 			);
 
 			wp_enqueue_script(
-				'ui-static-area-editor.min',
-				self::get_current_file_url() . '/assets/ui-static-area-editor.js',
+				'ui-static-area-editor-min',
+				self::get_current_file_url() . '/assets/min/ui-static-area-editor.min.js',
 				array( 'jquery' ),
 				CHERRY_VERSION,
 				true
@@ -683,8 +684,8 @@ if ( ! class_exists( 'UI_Static_Area_Editor' ) ) {
 			);
 
 			wp_enqueue_style(
-				'ui-static-area-editor',
-				self::get_current_file_url() . '/assets/ui-static-area-editor.css',
+				'ui-static-area-editor-min',
+				self::get_current_file_url() . '/assets/min/ui-static-area-editor.min.css',
 				array(),
 				'1.0.0',
 				'all'

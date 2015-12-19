@@ -136,6 +136,10 @@ if ( !class_exists( 'Cherry_Options_Framework' ) ) {
 				foreach ($sectionSettings['options-list'] as $optionId => $optionSettings) {
 					if($option_id == $optionId){
 						$result = $optionSettings['type'];
+
+						if( isset( $optionSettings['multiple'] ) && true == $optionSettings['multiple'] ){
+							$result = 'multiple-select';
+						}
 					}
 				}
 			}
@@ -191,6 +195,26 @@ if ( !class_exists( 'Cherry_Options_Framework' ) ) {
 						foreach ($option_list as $key => $value) {
 							$type = $this->get_type_by_id($key);
 							switch ($type) {
+								case 'multiple-select':
+									if (isset($post_array[$key])) {
+										$options[$section_name]['options-list'][$key] = array_filter( $post_array[$key] );
+									}
+									break;
+								case 'webfont':
+									if (isset($post_array[$key])) {
+										$checked_fonts = array();
+										if( !empty( $post_array[ $key ] ) && is_array( $post_array[ $key ] ) ){
+											foreach ( $post_array[ $key ] as $font_key => $font ) {
+												$font['style'] = array_filter( $font['style'] );
+												$font['style'] = !empty( $font['style'] ) ? $font['style'] : array( 'regular' );
+												$font['character'] = array_filter( $font['character'] );
+												$font['character'] = !empty( $font['character'] ) ? $font['character'] : array( 'latin' );
+												$checked_fonts[$font_key] = $font;
+											}
+										}
+										$options[$section_name]['options-list'][$key] = $checked_fonts;
+									}
+									break;
 								case 'checkbox':
 									if (isset($post_array[$key])) {
 										$check_value = array();
@@ -444,13 +468,25 @@ if ( !class_exists( 'Cherry_Options_Framework' ) ) {
 }
 
 /**
- * Get cherry option value
+ * Retrieve option value based on name of option.
  *
- * @since 4.0.0
+ * @since  4.0.0
+ * @since  4.0.5 Added the `cherry_option_` filter.
+ * @param  string $name    Name of option to retrieve.
+ * @param  mixed  $default Default value to return if the option does not exist.
+ * @return mixed           Value set for the option.
  */
 function cherry_get_option( $name, $default = false ) {
 	$options_framework = Cherry_Options_Framework::get_instance();
-	return $options_framework->get_option_value( $name, $default );
+	$value             = $options_framework->get_option_value( $name, $default );
+
+	/**
+	 * Filter the value of an existing option.
+	 *
+	 * @since 4.0.5
+	 * @param mixed $value Value of the option.
+	 */
+	return apply_filters( 'cherry_option_' . $name, $value );
 }
 
 function cherry_get_options( $name ) {

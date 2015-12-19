@@ -56,6 +56,8 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 			add_action( 'wp_ajax_cherry_partial_export_url', array( $this, 'cherry_partial_export_url' ) );
 			add_action( 'wp_ajax_cherry_partial_export', array( $this, 'partial_export' ) );
 
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_builder_styles' ), 99 );
+
 			// add options to allowed MIME types
 			add_filter( 'upload_mimes', array( $this, 'add_options_mime' ) );
 
@@ -100,6 +102,8 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 			require_once( trailingslashit( CHERRY_ADMIN ) . 'ui-elements/ui-ace-editor/ui-ace-editor.php' );
 			require_once( trailingslashit( CHERRY_ADMIN ) . 'ui-elements/ui-layout-editor/ui-layout-editor.php' );
 			require_once( trailingslashit( CHERRY_ADMIN ) . 'ui-elements/ui-tooltip/ui-tooltip.php' );
+
+			require_once( trailingslashit( CHERRY_ADMIN ) . 'ui-elements/ui-webfont/ui-webfont.php' );
 		}
 
 		private function init(){
@@ -129,15 +133,13 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 				)
 			);
 
-			$document_link = '<a href="http://cherryframework.com/documentation/cf4/" title="' . __( 'Documentation', 'cherry' ) . '" target="_blank">' . __( 'Cherry Framework 4 documentation', 'cherry' ) . '</a>';
-
 			/**
 			 * Filters a link to the framework/theme documentation.
 			 *
 			 * @since 4.0.2
 			 * @var   string
 			 */
-			$document_link = apply_filters( 'cherry_documentation_link', $document_link );
+			$document_link = cherry_get_documentation_link();
 
 			$before_content = '';
 
@@ -157,7 +159,6 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 				'function'       => array( __CLASS__, 'cherry_options_page_build' ),
 				'before_content' => $before_content,
 			) );
-
 
 			// Settings need to be registered after admin_init
 			add_action( 'admin_init', array( $this, 'settings_init' ) );
@@ -238,16 +239,27 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 		 * @since 4.0.0
 		 */
 		function cherry_partial_export_url(){
-			if ( !empty( $_POST ) && array_key_exists( 'export_array', $_POST ) && array_key_exists( '_wpnonce', $_POST ) ) {
+			if ( !empty( $_POST ) && array_key_exists( 'export_array', $_POST ) && array_key_exists( '_wpnonce', $_POST ) && array_key_exists( 'use_statics', $_POST ) ) {
 				$export_array = $_POST['export_array'];
 				$_wpnonce = $_POST['_wpnonce'];
+				$use_statics = $_POST['use_statics'];
+
+				$result_array = array();
 
 				$validate = check_ajax_referer( 'cherry_partial_export', $_wpnonce, false );
 				if ( ! $validate ) {
 					wp_die( __( 'Invalid request', 'cherry' ), __( 'Error. Invalid request', 'cherry' ) );
 				}
 
-				set_transient( 'cherry_partial_export_array', $export_array, HOUR_IN_SECONDS );
+				$result_array['options'] = $export_array;
+
+				$cherry_options_settings = get_option('cherry-options');
+				$current_statics = get_option( $cherry_options_settings['id'] . '_statics' );
+				if( isset( $current_statics ) && !empty( $current_statics ) && 'true' == $use_statics ){
+					$result_array['statics'] = $current_statics;
+				}
+
+				set_transient( 'cherry_partial_export_array', $result_array, HOUR_IN_SECONDS );
 				echo esc_url( self::$options_partial_export_url );
 				exit();
 			}
@@ -344,6 +356,7 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 			$import_data = $wp_filesystem->get_contents( $import_file );
 
 			$import_options = json_decode( $import_data, true );
+
 			//$this->options_import_array = $import_options;
 
 			if ( ! is_array( $import_options ) || empty( $import_options ) ) {
@@ -355,6 +368,8 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 			$current_options = get_option( $settings['id'] );
 
 			$result = array();
+
+			$import_options = isset( $import_options['options'] ) ? $import_options['options'] : $import_options ;
 
 			foreach ( $current_options as $section => $data ) {
 				foreach ( $data['options-list'] as $opt => $val ) {
@@ -413,7 +428,7 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 				global $cherry_options_framework;
 
 				$post_array = $_POST['post_array'];
-				//var_dump($post_array);
+
 				$options = $cherry_options_framework->create_updated_options( $post_array );
 
 				$cherry_options_framework->save_options( $options );
@@ -479,7 +494,7 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 					);
 				}else{
 					$response = array(
-						'message' => __( 'Default options backup has been overwrited', 'cherry' ),
+						'message' => __( 'Default options backup has been overwrite', 'cherry' ),
 						'type' => 'info-notice'
 					);
 				}
@@ -587,6 +602,18 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 		}
 
 		/**
+		 * Enqueue admin-specific stylesheet.
+		 *
+		 * @since 4.0.0
+		 */
+		public function enqueue_builder_styles( $hook_suffix = false ) {
+			if( 'cherry_page_options' === $hook_suffix ){
+				wp_dequeue_style('yit-plugin-style');
+				wp_dequeue_style('woocommerce_admin_styles');
+			}
+		}
+
+		/**
 		 *
 		 * @since 4.0.0
 		 */
@@ -661,6 +688,20 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 						<a href="<?php echo esc_url( self::$options_export_url ) ?>" id="cherry-export-options" class="button button-default_"><?php _e( 'Export', 'cherry' ); ?></a>
 						<?php wp_nonce_field( 'cherry_partial_export', 'partial-export-nonce', false ); ?>
 						<a href="javascript:void(0)" id="cherry-partial-export-options" class="button button-default_"><?php _e( 'Partial export', 'cherry' ); ?><div class="cherry-spinner-wordpress spinner-wordpress-type-3"><span class="cherry-inner-circle"></span></div></a>
+						<div class="use-statics-wrap">
+						<?php $ui_checkbox = new UI_Checkbox(
+								array(
+									'id'			=> 'cherry-export-use-static-setting',
+									'name'			=> 'cherry-export-use-static-setting',
+									'value'			=> array(),
+									'options'		=> array(
+										'use-statics'	=> __( 'Attach statics settings', 'cherry' )
+									),
+									'class' => 'cherry-export-use-static-setting'
+								)
+							);
+							echo $ui_checkbox->render(); ?>
+						</div>
 					</div>
 					<div class="import-control">
 						<h4><?php _e( 'Import', 'cherry' ); ?></h4>
@@ -683,7 +724,6 @@ if ( !class_exists( 'Cherry_Options_Framework_Admin' ) ) {
 				</div>
 				<?php
 		}
-
 
 		/**
 		 * Is a given string a color formatted in hexidecimal notation?

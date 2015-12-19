@@ -8,6 +8,44 @@ img {
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
+.menu-secondary {
+	clear: both;
+	display: block;
+	float: left;
+	width: 100%;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+	}
+	li {
+		float: left;
+		position: relative;
+
+		&:hover > a,
+		&.focus > a {
+			text-decoration: underline;
+		}
+		&.current_page_item > a,
+		&.current-menu-item > a,
+		&.current_page_ancestor > a {
+			text-decoration: underline;
+		}
+	}
+	a {
+		display: block;
+		text-decoration: none;
+	}
+	> ul {
+		> li {
+			margin-left: 15px;
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
 .comment-navigation,
 .posts-navigation,
 .post-navigation {
@@ -17,12 +55,12 @@ img {
 		overflow: hidden;
 	}
 
-	& .nav-previous {
+	.nav-previous {
 		float: left;
 		width: 50%;
 	}
 
-	& .nav-next {
+	.nav-next {
 		float: right;
 		text-align: right;
 		width: 50%;
@@ -55,8 +93,6 @@ img {
 	width: 1px;
 	overflow: hidden;
 
-	&:hover,
-	&:active,
 	&:focus {
 		background-color: #f1f1f1;
 		border-radius: 3px;
@@ -129,6 +165,12 @@ img {
 	select {
 		max-width: 100%;
 	}
+	&_calendar {
+		th, tbody td {
+			text-align: center;
+			padding: .25em 0;
+		}
+	}
 }
 
 /*--------------------------------------------------------------
@@ -166,6 +208,9 @@ img {
 }
 .entry-meta {
 	overflow: hidden;
+	.entry-thumbnail.large + & {
+		overflow: inherit;
+	}
 }
 
 .format-link-marker {
@@ -315,6 +360,10 @@ embed,
 iframe,
 object {
 	max-width: 100%;
+}
+
+iframe {
+	border: none;
 }
 
 /*--------------------------------------------------------------
