@@ -1894,7 +1894,7 @@ p {
 
 .cherry-breadcrumbs {
   text-align: left;
-  padding: 40px 0 39px; }
+  padding: 0px 0 39px; }
   .cherry-breadcrumbs .page-title {
     color: white;
     margin: 0 0 15px 0; }
@@ -1965,7 +1965,7 @@ p {
   margin: 0 0 20px 0; }
 
 .site-content {
-  padding: 102px 0 0 0; }
+  padding: 0px 0 0 0; }
   .blog .site-content, .single .site-content, .author .site-content, .search-results .site-content {
     padding-bottom: 109px; }
   .home .site-content {
